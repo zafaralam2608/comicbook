@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:h2:file:C:/workspace/databasenew/comicbook
+    driverClassName: org.h2.Driver
+    name: comicbook
+    password: password
+    username: sa
+  h2:
+    console:
+      enabled: true
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+server:
+  port: 2608
+  servlet:
+    context-path:
