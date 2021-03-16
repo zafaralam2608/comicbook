@@ -1,6 +1,7 @@
 .idea/
-*/*.iml
+*.iml
 
+client/.eslintcache
 client/node_modules/
 client/build/
 client/node/
