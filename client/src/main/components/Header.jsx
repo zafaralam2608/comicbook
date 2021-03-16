@@ -4,7 +4,7 @@ import {Image, Navbar} from "react-bootstrap";
 
 export default function Header() {
     return (
-        <>
+        <div className={"header"}>
             <Navbar fixed="top" bg="dark">
                 <Navbar.Brand href="./" className="col-sm-1">
                     <Image src="favicon.ico"/>
@@ -13,6 +13,6 @@ export default function Header() {
                     Page Title
                 </Navbar.Text>
             </Navbar>
-        </>
+        </div>
     );
 }

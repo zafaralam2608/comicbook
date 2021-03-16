@@ -1,0 +1,46 @@
+.application {
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+}
+
+.header {
+
+}
+
+.footer {
+
+}
+
+.center {
+    height: 100%;
+    width: 100%;
+    padding-top: 62px;
+    padding-bottom: 46px;
+}
+
+.sidebar {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+}
+
+.content {
+    height: 100%;
+    width: 100%;
+    padding-left: 200px;
+}
+
+.album {
+    height: 100%;
+    width: 100%;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
