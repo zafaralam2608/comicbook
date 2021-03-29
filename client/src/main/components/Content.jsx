@@ -1,11 +1,21 @@
-import React from "react";
-import Profile from "./Profile";
+import React, {Component} from "react";
 import Album from "./Album";
+import {connect} from "react-redux";
+import {Application} from "./Application";
 
-export default function Content() {
-    return (
-        <div className={"content"}>
-            <Album/>
-        </div>
-    );
+class Content extends Component {
+    render() {
+        return (
+            <div className={"content"}>
+                <Album/>
+            </div>
+        );
+    }
+
 }
+
+export default connect(store => {
+    return {
+        app: store.get('app')
+    }
+})(Content);

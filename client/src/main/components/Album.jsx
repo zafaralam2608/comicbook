@@ -1,22 +1,19 @@
-import React, {useEffect, useState} from "react";
+import React, {Component} from "react";
 import {Button, ButtonGroup, Card} from "react-bootstrap";
-import axios from "axios";
+import Content from "./Content";
+import {connect} from "react-redux";
+import {Application} from "./Application";
 
 
-export default function Album() {
+class Album extends Component {
 
-    const [profiles, setProfiles] = useState([]);
-    const [error, setError] = useState(false);
+    render() {
 
-    useEffect(() => {
-        axios.get("/profiles")
-            .then(response => setProfiles(response.data))
-            .catch(exception => setError(true))
-    }, []);
+        const profiles = this.props.app.albumList;
 
-    return profiles.length === 0
-        ? <div>No Profile found. Create new</div>
-        :   (
+        return profiles && profiles.length > 0
+            ?
+            (
                 <div className={"album"}>
                     {
                         profiles.map(
@@ -43,5 +40,14 @@ export default function Album() {
                         )
                     }
                 </div>
-            );
+            )
+            : <div>No Profile found. Create new</div>
+            ;
+    }
 }
+
+export default connect(store => {
+    return {
+        app: store.get('app')
+    }
+})(Album);
