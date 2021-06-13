@@ -3,6 +3,7 @@ import {Button, ButtonGroup, Card} from "react-bootstrap";
 import {connect} from "react-redux";
 import {Delete, Edit, Visibility} from "@material-ui/icons";
 import * as appActions from "../actions/appActions";
+import {Link} from "react-router-dom";
 
 
 class Album extends Component {
@@ -34,7 +35,9 @@ class Album extends Component {
                                         <Card.Title>{profile.name}</Card.Title>
                                         <Card.Subtitle>{profile.alias}</Card.Subtitle>
                                         <ButtonGroup size="sm">
+                                            <Link to={"/profile/" + profile.callsign}>
                                             <Button className="m-1"><Visibility/></Button>
+                                            </Link>
                                             <Button variant="dark" className="m-1"><Edit/></Button>
                                             <Button variant="dark" className="m-1"><Delete/></Button>
                                         </ButtonGroup>
