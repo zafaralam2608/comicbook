@@ -1,5 +1,6 @@
 import React, {useState} from "react";
 import {Nav} from "react-bootstrap";
+import {useStyles} from "../constants/styles";
 
 export default function Sidebar() {
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -12,8 +13,10 @@ export default function Sidebar() {
         setDrawerOpen(false);
     };
 
+    const styles = useStyles();
+
     return (
-        <div className={"sidebar"}>
+        <div className={styles.drawer}>
             <Nav fill justify defaultActiveKey="/home" className="flex-column" variant={"tabs"}>
                 <Nav.Link eventKey="link-0">Active</Nav.Link>
                 <Nav.Link eventKey="link-1">Link</Nav.Link>

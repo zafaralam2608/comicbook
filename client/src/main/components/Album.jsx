@@ -1,11 +1,19 @@
 import React, {Component} from "react";
 import {Button, ButtonGroup, Card} from "react-bootstrap";
-import Content from "./Content";
 import {connect} from "react-redux";
-import {Application} from "./Application";
+import {Delete, Edit, Visibility} from "@material-ui/icons";
+import * as appActions from "../actions/appActions";
 
 
 class Album extends Component {
+
+    componentDidMount() {
+        this.retrieveDataFromServer();
+    }
+
+    retrieveDataFromServer() {
+        this.props.dispatch(appActions.getProfiles());
+    }
 
     render() {
 
@@ -19,20 +27,16 @@ class Album extends Component {
                         profiles.map(
                             (profile, index) => (
                                 <Card key={index} className="m-1 p-1 align-items-center"
-                                      style={{width: "250px", height: "350px"}}>
+                                      style={{width: "250px", height: "350px", color: "black"}}>
                                     <Card.Img variant="top" src={"images/" + profile.callsign}
                                               style={{width: "150px", height: "200px"}}/>
                                     <Card.Body>
                                         <Card.Title>{profile.name}</Card.Title>
                                         <Card.Subtitle>{profile.alias}</Card.Subtitle>
                                         <ButtonGroup size="sm">
-                                            {
-                                                ['View', 'Edit', 'Delete'].map(
-                                                    (a) => (
-                                                        <Button key={a} variant="dark" className="m-1">{a}</Button>
-                                                    )
-                                                )
-                                            }
+                                            <Button className="m-1"><Visibility/></Button>
+                                            <Button variant="dark" className="m-1"><Edit/></Button>
+                                            <Button variant="dark" className="m-1"><Delete/></Button>
                                         </ButtonGroup>
                                     </Card.Body>
                                 </Card>

@@ -1,47 +1,41 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import React, {Component} from "react";
-import Header from "./Header";
-import Content from "./Content";
-import Sidebar from "./Sidebar";
-import Footer from "./Footer";
-import {connect} from "react-redux";
-import * as appActions from "../actions/appActions";
+import React from "react";
+import {createMuiTheme, CssBaseline, ThemeProvider} from "@material-ui/core";
+import DashboardLayout from "./DashboardLayout";
 
-export class Application extends Component {
+export default function Application() {
 
-    constructor(props) {
-        super(props);
-    }
 
-    componentDidMount() {
-        this.retrieveDataFromServer();
-    }
+        const theme = createMuiTheme({
+            palette: {
+                type: "light",
+            }
+        });
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
-        //this.retrieveDataFromServer();
-    }
 
-    render() {
         return (
-            <div className={"application"}>
+            <ThemeProvider theme={theme}>
+                <CssBaseline/>
+                <DashboardLayout/>
+            </ThemeProvider>
+        );
+            /*<div style={{display: "flex", flexDirection: "row"}}>
                 <Header/>
                 <div className={"center"}>
                     <Sidebar/>
                     <Content/>
                 </div>
                 <Footer/>
-            </div>
-        );
-    }
+            </div>*/
 
-    retrieveDataFromServer() {
+    /*retrieveDataFromServer() {
         this.props.dispatch(appActions.getProfiles());
-    }
+    }*/
 }
 
-export default connect(store => {
+/*export default connect(store => {
     return {
         app: store.get('app')
     }
-})(Application);
+})(Application);*/
