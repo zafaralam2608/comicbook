@@ -7,7 +7,7 @@ export function getProfilesPending() {
     }
 }
 
-export function getProfilesFailure() {
+export function getProfilesFailure(payload) {
     return {
         type: LOAD_PROFILES_FAILURE
     }
@@ -28,7 +28,7 @@ export const getProfiles = () => (
                 dispatch(getProfilesSuccess(response.data));
             })
             .catch(err => {
-                dispatch(getProfilesSuccess(err));
+                dispatch(getProfilesFailure(err));
             })
     }
 );

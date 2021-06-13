@@ -29,13 +29,13 @@ class Album extends Component {
                             (profile, index) => (
                                 <Card key={index} className="m-1 p-1 align-items-center"
                                       style={{width: "250px", height: "350px", color: "black"}}>
-                                    <Card.Img variant="top" src={"images/" + profile.callsign}
+                                    <Card.Img variant="top" src={profile.callsign ? "images/" + profile.callsign : "images/batman"}
                                               style={{width: "150px", height: "200px"}}/>
                                     <Card.Body>
                                         <Card.Title>{profile.name}</Card.Title>
                                         <Card.Subtitle>{profile.alias}</Card.Subtitle>
                                         <ButtonGroup size="sm">
-                                            <Link to={"/profile/" + profile.callsign}>
+                                            <Link to={"/profile/" + profile.id}>
                                             <Button className="m-1"><Visibility/></Button>
                                             </Link>
                                             <Button variant="dark" className="m-1"><Edit/></Button>

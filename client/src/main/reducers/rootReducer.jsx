@@ -1,8 +1,10 @@
 import {combineReducers} from "redux-immutable";
 import appReducer from "./appReducer";
+import profileReducer from "./profileReducer";
 
 const rootReducer = combineReducers({
-        app: appReducer
+        app: appReducer,
+        profile: profileReducer
     }
 );
 

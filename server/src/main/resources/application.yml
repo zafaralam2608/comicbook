@@ -1,9 +1,9 @@
 spring:
   datasource:
-    url: jdbc:h2:file:C:/workspace/databasenew/comicbook
+    url: jdbc:h2:file:C:/workspace/database/comicbook
     driverClassName: org.h2.Driver
     name: comicbook
-    password: password
+    password: comicbook
     username: sa
   h2:
     console:

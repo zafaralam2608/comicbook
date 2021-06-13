@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
     Box,
     Button,
@@ -12,8 +12,20 @@ import {
     Grid,
     Table
 } from "@material-ui/core";
+import {useParams} from "react-router-dom";
+import {connect} from "react-redux";
+import * as profileActions from "../actions/profileActions";
 
-const Profile = () => {
+const Profile = (props) => {
+
+    const {id} = useParams();
+
+    useEffect(() => {
+        props.dispatch(profileActions.getProfile(id));
+    },[]);
+
+    const {name, alias, base, debutIn, debutOn} = props.profile;
+
     return (
         <>
             <Box
@@ -73,12 +85,12 @@ const Profile = () => {
                                     }}
                                 >
                                     <CardHeader
-                                        title={"Wonder Woman"}
-                                        subheader={"Diana Prince"}
+                                        title={name}
+                                        subheader={alias}
                                     />
                                     <CardMedia
                                         component="img"
-                                        image={"/images/wonderwoman"}
+                                        image={"/photo/" + id}
                                         style={{height: "350px", width: "250px"}}
                                     />
                                     <CardContent>
@@ -86,19 +98,15 @@ const Profile = () => {
                                             <tbody>
                                             <tr>
                                                 <th>Base</th>
-                                                <td>Themyscira</td>
+                                                <td>{base}</td>
                                             </tr>
                                             <tr>
                                                 <th>Debut in</th>
-                                                <td>name</td>
+                                                <td>{debutIn}</td>
                                             </tr>
                                             <tr>
                                                 <th>Debut on</th>
-                                                <td>year</td>
-                                            </tr>
-                                            <tr>
-                                                <th>Some</th>
-                                                <td>some</td>
+                                                <td>{debutOn}</td>
                                             </tr>
                                             <tr>
                                                 <th>Universe</th>
@@ -131,4 +139,8 @@ const Profile = () => {
     )
 }
 
-export default Profile;
+export default connect(store => {
+    return {
+        profile: store.get('profile')
+    }
+})(Profile);

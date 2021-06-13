@@ -21,9 +21,19 @@ public class ProfileService {
 
     private final ProfileRepository profileRepository;
 
+    public ProfileResource get(long id) {
+        ProfileModel model = profileRepository.getOne(id);
+        return convertModelToResource(model);
+    }
+
     public List<ProfileResource> getAll() {
         List<ProfileModel> models = profileRepository.findAll();
         return convertModelToResourceMultiple(models);
+    }
+
+    public ProfileResource saveProfile(ProfileResource resource) {
+        ProfileModel model = convertResourceToModel(resource);
+        return convertModelToResource(profileRepository.save(model));
     }
 
     private ProfileResource convertModelToResource(ProfileModel model) {
@@ -32,5 +42,9 @@ public class ProfileService {
 
     private List<ProfileResource> convertModelToResourceMultiple(List<ProfileModel> models) {
         return models.stream().map(this::convertModelToResource).collect(Collectors.toList());
+    }
+
+    private ProfileModel convertResourceToModel(ProfileResource resource) {
+        return modelMapper.map(resource, ProfileModel.class);
     }
 }
