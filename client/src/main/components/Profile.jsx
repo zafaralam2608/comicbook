@@ -91,7 +91,7 @@ const Profile = (props) => {
                                     <CardMedia
                                         component="img"
                                         image={"/photo/" + id}
-                                        style={{height: "350px", width: "250px"}}
+                                        style={{height: "250px", width: "250px"}}
                                     />
                                     <CardContent>
                                         <Table style={{width: "250px", height: "250px"}}>

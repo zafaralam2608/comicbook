@@ -1,13 +1,12 @@
 import {useState} from 'react';
 import {styled} from "@material-ui/styles";
-import Content from "./Content";
 import Album from "./Album";
 import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Profile from "./Profile";
-import {BrowserRouter, Redirect, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 
-const DashboardLayoutRoot = styled('div')(
+const LayoutRoot = styled('div')(
     ({theme}) => ({
         backgroundColor: theme.palette.background.default,
         display: 'flex',
@@ -17,7 +16,7 @@ const DashboardLayoutRoot = styled('div')(
     })
 );
 
-const DashboardLayoutWrapper = styled('div')(
+const LayoutWrapper = styled('div')(
     ({theme}) => ({
         display: 'flex',
         flex: '1 1 auto',
@@ -29,34 +28,37 @@ const DashboardLayoutWrapper = styled('div')(
     })
 );
 
-const DashboardLayoutContainer = styled('div')({
+const LayoutContainer = styled('div')({
     display: 'flex',
     flex: '1 1 auto',
     overflow: 'hidden'
 });
 
-const DashboardLayoutContent = styled('div')({
+const LayoutContent = styled('div')({
     flex: '1 1 auto',
     height: '100%',
     overflow: 'auto'
 });
 
-const DashboardLayout = () => {
+const Layout = () => {
     const [isMobileNavOpen, setMobileNavOpen] = useState(false);
 
     return (
-        <DashboardLayoutRoot>
-            {/*<DashboardNavbar onMobileNavOpen={() => setMobileNavOpen(true)} />
-      <DashboardSidebar
+        <LayoutRoot>
+            {/*<Navbar onMobileNavOpen={() => setMobileNavOpen(true)} />
+      <Sidebar
         onMobileClose={() => setMobileNavOpen(false)}
         openMobile={isMobileNavOpen}
       />*/}
             <Header/>
+            <Sidebar
+                onNavClose={() => setMobileNavOpen(false)}
+                openNav={isMobileNavOpen}
+            />
             <BrowserRouter>
-                <Sidebar/>
-                <DashboardLayoutWrapper>
-                    <DashboardLayoutContainer>
-                        <DashboardLayoutContent>
+                <LayoutWrapper>
+                    <LayoutContainer>
+                        <LayoutContent>
                             <Switch>
                                 <Route path="/profiles">
                                     <Album/>
@@ -65,12 +67,12 @@ const DashboardLayout = () => {
                                     <Profile/>
                                 </Route>
                             </Switch>
-                        </DashboardLayoutContent>
-                    </DashboardLayoutContainer>
-                </DashboardLayoutWrapper>
+                        </LayoutContent>
+                    </LayoutContainer>
+                </LayoutWrapper>
             </BrowserRouter>
-        </DashboardLayoutRoot>
+        </LayoutRoot>
     );
 };
 
-export default DashboardLayout;
+export default Layout;

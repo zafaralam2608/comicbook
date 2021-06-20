@@ -2,11 +2,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 import React from "react";
 import {createMuiTheme, CssBaseline, ThemeProvider} from "@material-ui/core";
-import DashboardLayout from "./DashboardLayout";
+import Layout from "./Layout";
 
 const Application = () => {
 
-        const theme = createMuiTheme({
+    const theme = createMuiTheme({
             palette: {
                 type: "light",
             }
@@ -15,7 +15,7 @@ const Application = () => {
         return (
             <ThemeProvider theme={theme}>
                 <CssBaseline/>
-                <DashboardLayout/>
+                <Layout/>
             </ThemeProvider>
         );
 }

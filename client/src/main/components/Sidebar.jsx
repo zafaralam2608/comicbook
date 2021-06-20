@@ -1,8 +1,9 @@
 import React, {useState} from "react";
-import {Nav} from "react-bootstrap";
-import {useStyles} from "../constants/styles";
+import {Box, Drawer, Hidden, List} from "@material-ui/core";
+import {SupervisorAccount} from "@material-ui/icons";
+import NavItem from "./NavItem";
 
-export default function Sidebar() {
+export default function Sidebar(onNavClose, openNav) {
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     const handleDrawerOpen = () => {
@@ -13,16 +14,49 @@ export default function Sidebar() {
         setDrawerOpen(false);
     };
 
-    const styles = useStyles();
+    const navItems = [
+        {
+            href: '/profiles',
+            icon: SupervisorAccount,
+            title: 'Profiles'
+        }
+    ];
 
     return (
-        <div className={styles.drawer}>
-            <Nav fill justify defaultActiveKey="/home" className="flex-column" variant={"tabs"}>
-                <Nav.Link eventKey="link-0">Active</Nav.Link>
-                <Nav.Link eventKey="link-1">Link</Nav.Link>
-                <Nav.Link eventKey="link-2">Link</Nav.Link>
-                <Nav.Link eventKey="link-3">Link</Nav.Link>
-            </Nav>
-        </div>
+        <>
+            <Drawer
+                anchor="left"
+                open
+                variant="persistent"
+                PaperProps={{
+                    sx: {
+                        width: 500,
+                        top: 75,
+                        height: 'calc(100% - 75px)'
+                    }
+                }}
+            >
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        height: '100%'
+                    }}
+                >
+                    <Box sx={{p: 2}}>
+                        <List>
+                            {navItems.map((item, index) => (
+                                <NavItem
+                                    href={item.href}
+                                    key={index}
+                                    title={item.title}
+                                    icon={item.icon}
+                                />
+                            ))}
+                        </List>
+                    </Box>
+                </Box>
+            </Drawer>
+        </>
     );
 }
