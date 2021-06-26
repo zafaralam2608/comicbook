@@ -1,9 +1,9 @@
 import {combineReducers} from "redux-immutable";
-import appReducer from "./appReducer";
+import albumReducer from "./albumReducer";
 import profileReducer from "./profileReducer";
 
 const rootReducer = combineReducers({
-        app: appReducer,
+        album: albumReducer,
         profile: profileReducer
     }
 );

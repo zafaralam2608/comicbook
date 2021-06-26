@@ -1,26 +1,26 @@
 import {LOAD_PROFILES_FAILURE, LOAD_PROFILES_PENDING, LOAD_PROFILES_SUCCESS} from "../constants/actionTypes";
 
 const initialState = {
-    albumList: null,
-    albumListLoading: false
+    profiles: [],
+    profilesLoading: false
 };
 
-const appReducer = (state= initialState, action) => {
+const albumReducer = (state= initialState, action) => {
     const finalState = Object.assign({}, state);
 
     switch (action.type) {
         case LOAD_PROFILES_PENDING: {
-            finalState.albumListLoading = true;
+            finalState.profilesLoading = true;
             break;
         }
         case LOAD_PROFILES_FAILURE: {
-            finalState.albumListLoading = false;
-            finalState.albumList = [];
+            finalState.profilesLoading = false;
+            finalState.profiles = [];
             break;
         }
         case LOAD_PROFILES_SUCCESS: {
-            finalState.albumListLoading = false;
-            finalState.albumList = action.payload;
+            finalState.profilesLoading = false;
+            finalState.profiles = action.payload;
             break;
         }
     }
@@ -28,4 +28,4 @@ const appReducer = (state= initialState, action) => {
     return finalState;
 };
 
-export default appReducer;
+export default albumReducer;
