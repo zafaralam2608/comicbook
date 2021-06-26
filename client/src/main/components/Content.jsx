@@ -1,5 +1,5 @@
 import React from "react";
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {Route, Switch} from "react-router-dom";
 import {Container} from "@material-ui/core";
 import Profile from "./Profile";
 import Album from "./Album";
@@ -14,16 +14,14 @@ export default function Content() {
                 <main className={classes.content}>
                     <div className={classes.appBarSpacer} />
                     <Container maxWidth="lg" className={classes.container}>
-                        <BrowserRouter>
                             <Switch>
-                                <Route path="/">
+                                <Route path="/profiles">
                                     <Album/>
                                 </Route>
-                                <Route path="/">
+                                <Route path="/profile/:id">
                                     <Profile/>
                                 </Route>
                             </Switch>
-                        </BrowserRouter>
                     </Container>
                 </main>
             </>

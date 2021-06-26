@@ -7,30 +7,23 @@ import {
     CardContent,
     CardHeader,
     CardMedia,
-    Container,
     Divider,
-    Grid, Paper,
+    Grid,
     Table
 } from "@material-ui/core";
 import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
 import * as profileActions from "../actions/profileActions";
-import clsx from "clsx";
-import {useStyles} from "../constants/styles";
 
 const Profile = (props) => {
 
-    const classes = useStyles();
-
-    const {id} = 100000;//useParams();
+    const {id} = useParams();
 
     useEffect(() => {
         props.dispatch(profileActions.getProfile(id));
     }, []);
 
     const {name, alias, base, debutIn, debutOn} = props.profile;
-
-    const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
     return (
         <>
@@ -62,7 +55,7 @@ const Profile = (props) => {
                         />
                         <CardMedia
                             component="img"
-                            image={"/photo/100000"}
+                            image={"/photo/" + id}
                             style={{height: "250px", width: "250px"}}
                         />
                         <CardContent>

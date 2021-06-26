@@ -3,6 +3,7 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Content from "./Content";
 import {useStyles} from "../constants/styles";
+import {BrowserRouter} from "react-router-dom";
 
 const Layout = () => {
 
@@ -24,11 +25,13 @@ const Layout = () => {
                 <Header
                     handleDrawerOpen={handleDrawerOpen}
                 />
-                <Sidebar
-                    handleDrawerClose={handleDrawerClose}
-                    open={open}
-                />
-                <Content/>
+                <BrowserRouter>
+                    <Sidebar
+                        handleDrawerClose={handleDrawerClose}
+                        open={open}
+                    />
+                    <Content/>
+                </BrowserRouter>
             </div>
         </>
     );
