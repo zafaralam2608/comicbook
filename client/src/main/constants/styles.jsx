@@ -1,57 +1,83 @@
 import {makeStyles} from "@material-ui/styles";
 
-const drawerWidth = "120px";
+const drawerWidth = 200;
 
 export const useStyles = makeStyles((theme) => ({
-    content: {
-        padding: "12px 24px",
-        [theme.breakpoints.up("md")]: {
-            marginLeft: drawerWidth
-        }
+    root: {
+        display: 'flex',
     },
-    drawer: {
+    toolbar: {
+        paddingRight: 24,
+    },
+    toolbarIcon: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
+        padding: '0 8px',
+        ...theme.mixins.toolbar,
+    },
+    appBar: {
+        zIndex: theme.zIndex.drawer + 1,
+        transition: theme.transitions.create(['width', 'margin'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+    },
+    appBarShift: {
+        marginLeft: drawerWidth,
+        width: `calc(100% - ${drawerWidth}px)`,
+        transition: theme.transitions.create(['width', 'margin'], {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    },
+    menuButton: {
+        marginRight: 36,
+    },
+    menuButtonHidden: {
+        display: 'none',
+    },
+    title: {
+        flexGrow: 1,
+    },
+    drawerPaper: {
+        position: 'relative',
+        whiteSpace: 'nowrap',
         width: drawerWidth,
-        height: "100%",
-        position: "fixed",
-        fontSize: "12px",
-        textAlign: "center",
-        padding: "12px 24px",
-        [theme.breakpoints.up("xs")]: {
-            display: "none"
-        },
-        [theme.breakpoints.up("md")]: {
-            display: "block"
-        }
+        height: '100%',
+        transition: theme.transitions.create('width', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
     },
-    drawerIcon: {
-        padding: "12px 24px",
-        overflow: "hidden",
-        textDecoration: "none"
+    drawerPaperClose: {
+        overflowX: 'hidden',
+        transition: theme.transitions.create('width', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+        width: theme.spacing(7),
+        [theme.breakpoints.up('sm')]: {
+            width: theme.spacing(9),
+        },
     },
-    quarterCard: {
-        paddingBottom: "20px",
-        [theme.breakpoints.up("xs")]: {
-            width: "50%"
-        },
-        [theme.breakpoints.up("sm")]: {
-            width: "33%"
-        },
-        [theme.breakpoints.up("md")]: {
-            width: "25%"
-        },
-        [theme.breakpoints.up("lg")]: {
-            width: "20%"
-        }
+    appBarSpacer: theme.mixins.toolbar,
+    content: {
+        flexGrow: 1,
+        height: '100vh',
+        overflow: 'auto',
     },
-    photoBar: {
-        height: "100%",
-        alignItems: "center",
-        display: "flex",
-        [theme.breakpoints.up("xs")]: {
-            flexDirection: "column-reverse"
-        },
-        [theme.breakpoints.up("md")]: {
-            flexDirection: "row"
-        }
-    }
+    container: {
+        paddingTop: theme.spacing(4),
+        paddingBottom: theme.spacing(4),
+    },
+    paper: {
+        padding: theme.spacing(2),
+        display: 'flex',
+        overflow: 'auto',
+        flexDirection: 'column',
+    },
+    fixedHeight: {
+        height: 240,
+    },
 }));

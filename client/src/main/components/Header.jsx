@@ -1,55 +1,33 @@
 import React from "react";
-import {Image, Navbar} from "react-bootstrap";
-import {AppBar, Box, Hidden, IconButton, Input, Link, Menu, Toolbar} from "@material-ui/core";
-import {Home} from "@material-ui/icons";
+import {AppBar, Badge, IconButton, Toolbar, Typography} from "@material-ui/core";
+import {Menu, Notifications} from '@material-ui/icons';
+import clsx from "clsx";
+import {useStyles} from "../constants/styles";
 
 
-const Header = () => {
+const Header = (props) => {
+
+    const classes = useStyles();
+
     return (
-        <AppBar
-            elevation={0}
-            color={'default'}
-        >
-            <Toolbar>
-                <Link to="/">
-                    <Home/>
-                </Link>
-                <Box sx={{ flexGrow: 1 }} />
-                <Hidden lgDown>
-                    <IconButton>
-                        <Input/>
-                        {/*<Badge
-                            badgeContent={notifications.length}
-                            color="primary"
-                            variant="dot"
-                        >
-                            <NotificationsIcon />
-                        </Badge>*/}
-                    </IconButton>
-                    <IconButton color="default">
-                        <Input/>
-                    </IconButton>
-                </Hidden>
-                <Hidden lgUp>
+        <>
+            <AppBar position="absolute" className={clsx(classes.appBar, props.open && classes.appBarShift)}>
+                <Toolbar className={classes.toolbar}>
                     <IconButton
-                        color="dark"
-                        /*onClick={onMobileNavOpen}*/
+                        edge="start"
+                        color="default"
+                        aria-label="open drawer"
+                        onClick={() => props.handleDrawerOpen()}
+                        className={clsx(classes.menuButton, props.open && classes.menuButtonHidden)}
                     >
-                        <Menu open/>
+                        <Menu />
                     </IconButton>
-                </Hidden>
-            </Toolbar>
-        </AppBar>
-        /*<div className={"header"}>
-            <Navbar fixed="top" bg="dark">
-                <Navbar.Brand href="./" className="col-sm-1">
-                    <Image src="favicon.ico"/>
-                </Navbar.Brand>
-                <Navbar.Text style={{textAlign: "center", color: "white", fontWeight: "bold", fontSize: "20px"}} className="col-sm-11">
-                    Page Title
-                </Navbar.Text>
-            </Navbar>
-        </div>*/
+                    <Typography component="h1" variant="h6" color="inherit" noWrap className={classes.title}>
+                        Dashboard
+                    </Typography>
+                </Toolbar>
+            </AppBar>
+        </>
     );
 }
 

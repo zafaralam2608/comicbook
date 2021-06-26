@@ -1,23 +1,33 @@
-import React, {Component} from "react";
-import Album from "./Album";
-import {connect} from "react-redux";
-import {Application} from "./Application";
+import React from "react";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {Container} from "@material-ui/core";
 import Profile from "./Profile";
+import Album from "./Album";
 import {useStyles} from "../constants/styles";
 
 export default function Content() {
-        const styles = useStyles();
+
+        const classes = useStyles();
 
         return (
-            <div className={styles.content}>
-                <Profile/>
-            </div>
+            <>
+                <main className={classes.content}>
+                    <div className={classes.appBarSpacer} />
+                    <Container maxWidth="lg" className={classes.container}>
+                        <BrowserRouter>
+                            <Switch>
+                                <Route path="/">
+                                    <Album/>
+                                </Route>
+                                <Route path="/">
+                                    <Profile/>
+                                </Route>
+                            </Switch>
+                        </BrowserRouter>
+                    </Container>
+                </main>
+            </>
         );
 
 }
 
-/*export default connect(store => {
-    return {
-        app: store.get('app')
-    }
-})(Content);*/

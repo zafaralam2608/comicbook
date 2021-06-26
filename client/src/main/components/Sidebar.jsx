@@ -1,18 +1,10 @@
-import React, {useState} from "react";
-import {Box, Drawer, Hidden, List} from "@material-ui/core";
-import {SupervisorAccount} from "@material-ui/icons";
-import NavItem from "./NavItem";
+import React from "react";
+import {Divider, Drawer, IconButton, List, ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
+import {ChevronLeft, Dashboard, SupervisorAccount} from "@material-ui/icons";
+import clsx from "clsx";
+import {useStyles} from "../constants/styles";
 
-export default function Sidebar(onNavClose, openNav) {
-    const [drawerOpen, setDrawerOpen] = useState(false);
-
-    const handleDrawerOpen = () => {
-        setDrawerOpen(true);
-    };
-
-    const handleDrawerClose = () => {
-        setDrawerOpen(false);
-    };
+export default function Sidebar(props) {
 
     const navItems = [
         {
@@ -22,40 +14,31 @@ export default function Sidebar(onNavClose, openNav) {
         }
     ];
 
+    const classes = useStyles();
+
     return (
         <>
             <Drawer
-                anchor="left"
-                open
-                variant="persistent"
-                PaperProps={{
-                    sx: {
-                        width: 500,
-                        top: 75,
-                        height: 'calc(100% - 75px)'
-                    }
+                variant="permanent"
+                classes={{
+                    paper: clsx(classes.drawerPaper, !props.open && classes.drawerPaperClose),
                 }}
+                open={props.open}
             >
-                <Box
-                    sx={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        height: '100%'
-                    }}
-                >
-                    <Box sx={{p: 2}}>
-                        <List>
-                            {navItems.map((item, index) => (
-                                <NavItem
-                                    href={item.href}
-                                    key={index}
-                                    title={item.title}
-                                    icon={item.icon}
-                                />
-                            ))}
-                        </List>
-                    </Box>
-                </Box>
+                <div className={classes.toolbarIcon}>
+                    <IconButton onClick={() => props.handleDrawerClose()}>
+                        <ChevronLeft />
+                    </IconButton>
+                </div>
+                <Divider />
+                <List>
+                    <ListItem button>
+                        <ListItemIcon>
+                            <Dashboard />
+                        </ListItemIcon>
+                        <ListItemText primary="Dashboard" />
+                    </ListItem>
+                </List>
             </Drawer>
         </>
     );
