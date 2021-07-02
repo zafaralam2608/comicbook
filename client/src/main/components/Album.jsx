@@ -2,9 +2,8 @@ import React, {useEffect} from "react";
 import {Button, ButtonGroup, Card} from "react-bootstrap";
 import {connect} from "react-redux";
 import {Delete, Edit, Visibility} from "@material-ui/icons";
-import {Link} from "react-router-dom";
 import * as appActions from "../actions/appActions";
-import {CircularProgress} from "@material-ui/core";
+import Spinner from "./Spinner";
 
 
 const Album = (props) => {
@@ -15,6 +14,9 @@ const Album = (props) => {
         props.dispatch(appActions.getProfiles())
     ), [])
 
+
+    if(profilesLoading)
+        return <Spinner/>
 
     return (
         <>

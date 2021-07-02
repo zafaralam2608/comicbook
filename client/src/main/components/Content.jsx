@@ -15,6 +15,9 @@ export default function Content() {
                     <div className={classes.appBarSpacer} />
                     <Container maxWidth="lg" className={classes.container}>
                             <Switch>
+                                <Route exact path="/">
+                                    <div>To Do</div>
+                                </Route>
                                 <Route path="/profiles">
                                     <Album/>
                                 </Route>

@@ -14,6 +14,7 @@ import {
 import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
 import * as profileActions from "../actions/profileActions";
+import Spinner from "./Spinner";
 
 const Profile = (props) => {
 
@@ -23,7 +24,11 @@ const Profile = (props) => {
         props.dispatch(profileActions.getProfile(id));
     }, []);
 
-    const {name, alias, base, debutIn, debutOn} = props.profile;
+    const {loading, name, alias, base, debutIn, debutOn} = props.profile;
+
+    if (loading)
+        return <Spinner/>;
+
 
     return (
         <>
