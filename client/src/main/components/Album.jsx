@@ -1,14 +1,12 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
-import {Delete, Edit, Visibility} from '@material-ui/icons';
 import * as appActions from '../actions/appActions';
 import Spinner from './Spinner';
-import {Button, Card, CardActions, CardHeader, CardMedia, Grid} from '@material-ui/core';
-import {useStyles} from "../constants/styles";
+import {Grid} from '@material-ui/core';
+import Thumbnail from "./Thumbnail";
 
 
 const Album = (props) => {
-    const classes = useStyles();
 
     const {profiles, profilesLoading} = props.app;
 
@@ -26,40 +24,7 @@ const Album = (props) => {
                 {
                     profiles.map(
                         (profile, index) => (
-                            <Card key={index} item className={classes.photoCard}>
-                                <CardHeader
-                                    title={profile.name}
-                                    subheader={profile.alias}
-                                />
-                                <CardMedia
-                                    component='img'
-                                    image={'photo/' + profile.id}
-                                    className={classes.photoSquare}
-                                />
-                                <CardActions>
-                                    <Button
-                                        variant='text'
-                                        href={'/profile/' + profile.id}
-                                    >
-                                        <Visibility/>
-                                        View
-                                    </Button>
-                                    <Button
-                                        variant='text'
-                                        href={'/profile/' + profile.id}
-                                    >
-                                        <Edit/>
-                                        Edit
-                                    </Button>
-                                    <Button
-                                        variant='text'
-                                        href={'/profile/' + profile.id}
-                                    >
-                                        <Delete/>
-                                        Delete
-                                    </Button>
-                                </CardActions>
-                            </Card>
+                            <Thumbnail key={index} profile={profile}/>
                         )
                     )
                 }

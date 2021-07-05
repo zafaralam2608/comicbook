@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {
     Box,
     Button,
@@ -21,6 +21,8 @@ const Profile = (props) => {
     const classes = useStyles();
 
     const {id} = useParams();
+
+    const [img, setImg] = useState('../photo/' + id);
 
     useEffect(() => {
         props.dispatch(profileActions.getProfile(id));
@@ -61,9 +63,10 @@ const Profile = (props) => {
                             subheader={alias}
                         />
                         <CardMedia
-                            component='img'
-                            image={'photo/' + id}
                             className={classes.photoSquare}
+                            component='img'
+                            image={img}
+                            onError={()=>{setImg('../images/photo');}}
                         />
                         <CardContent>
                             <Table className={classes.photoSquare}>
