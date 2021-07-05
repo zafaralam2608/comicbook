@@ -1,16 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {
-    Box,
-    Button,
-    Card,
-    CardActions,
-    CardContent,
-    CardHeader,
-    CardMedia,
-    Divider,
-    Grid,
-    Table
-} from "@material-ui/core";
+import {Box, Card, CardActions, CardContent, CardHeader, CardMedia, Divider, Grid, Table} from "@material-ui/core";
 import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
 import * as profileActions from "../actions/profileActions";
@@ -23,6 +12,7 @@ const Profile = (props) => {
     const {id} = useParams();
 
     const [img, setImg] = useState('../photo/' + id);
+    const [logo, setLogo] = useState('../logo/' + id);
 
     useEffect(() => {
         props.dispatch(profileActions.getProfile(id));
@@ -89,20 +79,31 @@ const Profile = (props) => {
                                 </tr>
                                 <tr>
                                     <th>Official</th>
-                                    <td>{links.official}</td>
+                                    <td>
+                                        <a href={links.official}>
+                                            <img src={logo} alt={'o'}
+                                                 onError={()=>{setLogo('../images/logo');}}
+                                            />
+                                        </a>
+                                    </td>
                                 </tr>
                                 </tbody>
                             </Table>
                         </CardContent>
                         <Divider/>
                         <CardActions>
-                            <Button
-                                color="primary"
-                                fullWidth
-                                variant="text"
-                            >
-                                Upload picture
-                            </Button>
+                            <a href={links.wikipedia}>
+                                <img src={'../logos/wikipedia.svg'} alt={'w'}/>
+                            </a>
+                            <a href={links.instagram}>
+                                <img src={'../logos/instagram.svg'} alt={'i'}/>
+                            </a>
+                            <a href={links.twitter}>
+                                <img src={'../logos/twitter.svg'} alt={'t'}/>
+                            </a>
+                            <a href={links.facebook}>
+                                <img src={'../logos/facebook.svg'} alt={'f'}/>
+                            </a>
                         </CardActions>
                     </Card>
                 </Grid>

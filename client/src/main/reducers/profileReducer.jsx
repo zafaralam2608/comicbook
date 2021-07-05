@@ -9,7 +9,7 @@ const initialState = {
     debutIn: "",
     debutOn: "",
     universe: {id: "", name: ""},
-    links: {official: "", wikipedia: "", facebook: "", instagram: "", twitter: ""}
+    links: {official: "", wikipedia: "", instagram: "", twitter: "", facebook: ""}
 }
 
 const profileReducer = (state= initialState, action) => {
