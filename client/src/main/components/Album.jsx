@@ -1,12 +1,14 @@
-import React, {useEffect} from "react";
-import {Button, ButtonGroup, Card} from "react-bootstrap";
-import {connect} from "react-redux";
-import {Delete, Edit, Visibility} from "@material-ui/icons";
-import * as appActions from "../actions/appActions";
-import Spinner from "./Spinner";
+import React, {useEffect} from 'react';
+import {connect} from 'react-redux';
+import {Delete, Edit, Visibility} from '@material-ui/icons';
+import * as appActions from '../actions/appActions';
+import Spinner from './Spinner';
+import {Button, Card, CardActions, CardHeader, CardMedia, Grid} from '@material-ui/core';
+import {useStyles} from "../constants/styles";
 
 
 const Album = (props) => {
+    const classes = useStyles();
 
     const {profiles, profilesLoading} = props.app;
 
@@ -15,32 +17,53 @@ const Album = (props) => {
     ), [])
 
 
-    if(profilesLoading)
+    if (profilesLoading)
         return <Spinner/>
 
     return (
         <>
-            {
-                profiles.map(
-                    (profile, index) => (
-                        <Card key={index} className="m-1 p-1 align-items-center"
-                              style={{width: "250px", height: "350px", color: "black"}}>
-                            <Card.Img variant="top"
-                                      src={profile.callsign ? "images/" + profile.callsign : "images/batman"}
-                                      style={{width: "150px", height: "200px"}}/>
-                            <Card.Body>
-                                <Card.Title>{profile.name}</Card.Title>
-                                <Card.Subtitle>{profile.alias}</Card.Subtitle>
-                                <ButtonGroup size="sm">
-                                    <Button className="m-1" href={"/profile/" + profile.id}><Visibility/></Button>
-                                    <Button variant="dark" className="m-1"><Edit/></Button>
-                                    <Button variant="dark" className="m-1"><Delete/></Button>
-                                </ButtonGroup>
-                            </Card.Body>
-                        </Card>
+            <Grid container>
+                {
+                    profiles.map(
+                        (profile, index) => (
+                            <Card key={index} item className={classes.photoCard}>
+                                <CardHeader
+                                    title={profile.name}
+                                    subheader={profile.alias}
+                                />
+                                <CardMedia
+                                    component='img'
+                                    image={'photo/' + profile.id}
+                                    className={classes.photoSquare}
+                                />
+                                <CardActions>
+                                    <Button
+                                        variant='text'
+                                        href={'/profile/' + profile.id}
+                                    >
+                                        <Visibility/>
+                                        View
+                                    </Button>
+                                    <Button
+                                        variant='text'
+                                        href={'/profile/' + profile.id}
+                                    >
+                                        <Edit/>
+                                        Edit
+                                    </Button>
+                                    <Button
+                                        variant='text'
+                                        href={'/profile/' + profile.id}
+                                    >
+                                        <Delete/>
+                                        Delete
+                                    </Button>
+                                </CardActions>
+                            </Card>
+                        )
                     )
-                )
-            }
+                }
+            </Grid>
         </>
     )
 

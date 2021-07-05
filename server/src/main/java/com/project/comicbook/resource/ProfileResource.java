@@ -19,4 +19,6 @@ public class ProfileResource {
 
     private String debutOn;
 
+    private UniverseResource universe;
+
 }

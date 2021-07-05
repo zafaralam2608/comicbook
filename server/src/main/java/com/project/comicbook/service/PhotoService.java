@@ -1,11 +1,10 @@
 package com.project.comicbook.service;
 
 import com.project.comicbook.model.PhotoModel;
-import com.project.comicbook.resource.PhotoRepository;
+import com.project.comicbook.repository.PhotoRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import lombok.RequiredArgsConstructor;
 
@@ -25,5 +24,9 @@ public class PhotoService {
         model.setId(id);
         model.setContent(content);
         photoRepository.save(model);
+    }
+
+    public void deleteContent(Long id) {
+        photoRepository.deleteById(id);
     }
 }

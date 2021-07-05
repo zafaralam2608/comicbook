@@ -36,6 +36,10 @@ public class ProfileService {
         return convertModelToResource(profileRepository.save(model));
     }
 
+    public void deleteProfile(Long id) {
+        profileRepository.deleteById(id);
+    }
+
     private ProfileResource convertModelToResource(ProfileModel model) {
         return modelMapper.map(model, ProfileResource.class);
     }

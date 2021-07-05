@@ -1,7 +1,7 @@
 package com.project.comicbook.controller;
 
-import com.project.comicbook.resource.ProfileResource;
-import com.project.comicbook.service.ProfileService;
+import com.project.comicbook.resource.UniverseResource;
+import com.project.comicbook.service.UniverseService;
 
 import java.util.List;
 
@@ -18,29 +18,29 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/profile")
+@RequestMapping("/universe")
 @RequiredArgsConstructor(onConstructor_ = @Autowired)
-public class ProfileController {
+public class UniverseController {
 
-    private final ProfileService profileService;
+    private final UniverseService universeService;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<ProfileResource> getProfiles() {
-        return profileService.getAll();
+    public List<UniverseResource> getUniverses() {
+        return universeService.getAll();
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ProfileResource getProfile(@PathVariable Long id) {
-        return profileService.get(id);
+    public UniverseResource getUniverse(@PathVariable Long id) {
+        return universeService.get(id);
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ProfileResource createProfile(@RequestBody ProfileResource resource) {
-        return profileService.saveProfile(resource);
+    public UniverseResource createUniverse(@RequestBody UniverseResource resource) {
+        return universeService.saveUniverse(resource);
     }
 
     @DeleteMapping(value = "/{id}")
-    public void deleteProfile(@PathVariable Long id) {
-        profileService.deleteProfile(id);
+    public void deleteUniverse(@PathVariable Long id) {
+        universeService.deleteUniverse(id);
     }
 }

@@ -15,8 +15,10 @@ import {useParams} from "react-router-dom";
 import {connect} from "react-redux";
 import * as profileActions from "../actions/profileActions";
 import Spinner from "./Spinner";
+import {useStyles} from "../constants/styles";
 
 const Profile = (props) => {
+    const classes = useStyles();
 
     const {id} = useParams();
 
@@ -24,7 +26,7 @@ const Profile = (props) => {
         props.dispatch(profileActions.getProfile(id));
     }, []);
 
-    const {loading, name, alias, base, debutIn, debutOn} = props.profile;
+    const {loading, name, alias, base, debutIn, debutOn, universe, links} = props.profile;
 
     if (loading)
         return <Spinner/>;
@@ -59,12 +61,12 @@ const Profile = (props) => {
                             subheader={alias}
                         />
                         <CardMedia
-                            component="img"
-                            image={"/photo/" + id}
-                            style={{height: "250px", width: "250px"}}
+                            component='img'
+                            image={'photo/' + id}
+                            className={classes.photoSquare}
                         />
                         <CardContent>
-                            <Table style={{width: "250px", height: "250px"}}>
+                            <Table className={classes.photoSquare}>
                                 <tbody>
                                 <tr>
                                     <th>Base</th>
@@ -80,11 +82,11 @@ const Profile = (props) => {
                                 </tr>
                                 <tr>
                                     <th>Universe</th>
-                                    <td>DC</td>
+                                    <td>{universe.name}</td>
                                 </tr>
                                 <tr>
                                     <th>Official</th>
-                                    <td>link</td>
+                                    <td>{links.official}</td>
                                 </tr>
                                 </tbody>
                             </Table>

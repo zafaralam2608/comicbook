@@ -23,7 +23,7 @@ export function getProfileSuccess(payload) {
 export const getProfile = (id) => (
     dispatch => {
         dispatch(getProfilePending());
-        return axios.get("/profiles/" + 100000)
+        return axios.get("/profile/" + id)
             .then(response => {
                 dispatch(getProfileSuccess(response.data));
             })

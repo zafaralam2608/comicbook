@@ -1,4 +1,4 @@
-package com.project.comicbook.resource;
+package com.project.comicbook.repository;
 
 import com.project.comicbook.model.PhotoModel;
 
@@ -7,7 +7,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PhotoRepository extends JpaRepository<PhotoModel, Long> {
-
-    byte[] getContentById(long id);
-
 }

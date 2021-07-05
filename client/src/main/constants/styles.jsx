@@ -76,5 +76,15 @@ export const useStyles = makeStyles((theme) => ({
         display: 'flex',
         overflow: 'auto',
         flexDirection: 'column',
+    },
+    photoSquare: {
+        height: '250px',
+        width: '250px'
+    },
+    photoCard: {
+        height: '420px',
+        width: '270px',
+        margin: '10px',
+        padding: '10px'
     }
 }));
