@@ -1,41 +1,43 @@
-import React, {useEffect} from 'react';
-import {connect} from 'react-redux';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { Grid } from '@material-ui/core';
 import * as appActions from '../actions/appActions';
 import Spinner from './Spinner';
-import {Grid} from '@material-ui/core';
-import Thumbnail from "./Thumbnail";
+import Thumbnail from './Thumbnail';
 
+const Album = ({ app, dispatch }) => {
+  const { profiles, profilesLoading } = app;
 
-const Album = (props) => {
+  useEffect(() => (
+    dispatch(appActions.getProfiles())
+  ), []);
 
-    const {profiles, profilesLoading} = props.app;
+  if (profilesLoading) { return <Spinner />; }
 
-    useEffect(() => (
-        props.dispatch(appActions.getProfiles())
-    ), [])
+  return (
+    <>
+      <Grid container>
+        {
+          profiles.map(
+            (profile) => (
+              <Thumbnail key={profile.id} profile={profile} />
+            ),
+          )
+        }
+      </Grid>
+    </>
+  );
+};
 
+Album.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  app: PropTypes.exact({
+    profilesLoading: PropTypes.bool,
+    profiles: PropTypes.arrayOf(PropTypes.element),
+  }).isRequired,
+};
 
-    if (profilesLoading)
-        return <Spinner/>
-
-    return (
-        <>
-            <Grid container>
-                {
-                    profiles.map(
-                        (profile, index) => (
-                            <Thumbnail key={index} profile={profile}/>
-                        )
-                    )
-                }
-            </Grid>
-        </>
-    )
-
-}
-
-export default connect(store => {
-    return {
-        app: store.get('album')
-    }
-})(Album);
+export default connect((store) => ({
+  app: store.get('album'),
+}))(Album);
