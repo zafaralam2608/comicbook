@@ -1,6 +1,7 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {
-  AppBar, IconButton, PropTypes, Toolbar, Typography,
+  AppBar, IconButton, Toolbar, Typography,
 } from '@material-ui/core';
 import { Menu } from '@material-ui/icons';
 import clsx from 'clsx';
