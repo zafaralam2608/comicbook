@@ -1,4 +1,9 @@
-.idea/
+*.settings
+*.classpath
+*.factorypath
+*.vscode
+*.project
+*.idea
 *.iml
 
 client/.eslintcache
