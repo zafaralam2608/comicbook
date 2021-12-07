@@ -2,47 +2,51 @@ package com.project.comicbook.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
+import lombok.Setter;
 
 @Entity
-@Table(name = "PROFILE")
-@Data
-public class ProfileModel {
+@NoArgsConstructor
+@Getter
+@Setter
+public class Profile {
+
     @SequenceGenerator(name = "PROFILE_ID_GEN", initialValue = 10000, allocationSize = 1)
     @Id
-    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PROFILE_ID_GEN")
     private Long id;
 
-    @Column(name = "NAME", nullable = false)
+    @NonNull
     private String name;
 
-    @Column(name = "ALIAS", nullable = false)
-    private String alias = "";
+    private String alias;
 
-    @Column(name = "BASE")
-    private String base;
+    private String base = "";
 
-    @Column(name = "DEBUT_IN")
-    private String debutIn;
+    private String debutIn = "";
 
-    @Column(name = "DEBUT_ON")
-    private String debutOn;
+    private String debutOn = "";
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Links links;
 
     @ManyToOne(optional = false)
-    private UniverseModel universe;
+    private Universe universe;
 
     @CreationTimestamp
     @Column(name = "CREATED")
@@ -51,4 +55,5 @@ public class ProfileModel {
     @UpdateTimestamp
     @Column(name = "UPDATED")
     private Date updated;
+
 }

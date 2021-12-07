@@ -7,7 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.project.comicbook.model.UniverseModel;
+import com.project.comicbook.model.Universe;
 import com.project.comicbook.repository.UniverseRepository;
 import com.project.comicbook.resource.UniverseResource;
 
@@ -21,17 +21,17 @@ public class UniverseService {
     private UniverseRepository universeRepository;
 
     public UniverseResource get(long id) {
-	UniverseModel model = universeRepository.getById(id);
+	Universe model = universeRepository.getById(id);
 	return convertModelToResource(model);
     }
 
     public List<UniverseResource> getAll() {
-	List<UniverseModel> models = universeRepository.findAll();
+	List<Universe> models = universeRepository.findAll();
 	return convertModelToResourceMultiple(models);
     }
 
     public UniverseResource saveUniverse(UniverseResource resource) {
-	UniverseModel model = convertResourceToModel(resource);
+	Universe model = convertResourceToModel(resource);
 	return convertModelToResource(universeRepository.save(model));
     }
 
@@ -39,15 +39,15 @@ public class UniverseService {
 	universeRepository.deleteById(id);
     }
 
-    private UniverseResource convertModelToResource(UniverseModel model) {
+    private UniverseResource convertModelToResource(Universe model) {
 	return modelMapper.map(model, UniverseResource.class);
     }
 
-    private List<UniverseResource> convertModelToResourceMultiple(List<UniverseModel> models) {
+    private List<UniverseResource> convertModelToResourceMultiple(List<Universe> models) {
 	return models.stream().map(this::convertModelToResource).collect(Collectors.toList());
     }
 
-    private UniverseModel convertResourceToModel(UniverseResource resource) {
-	return modelMapper.map(resource, UniverseModel.class);
+    private Universe convertResourceToModel(UniverseResource resource) {
+	return modelMapper.map(resource, Universe.class);
     }
 }

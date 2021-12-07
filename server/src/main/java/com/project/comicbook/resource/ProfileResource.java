@@ -1,5 +1,9 @@
 package com.project.comicbook.resource;
 
+import java.util.Date;
+
+import com.project.comicbook.model.Links;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,5 +24,11 @@ public class ProfileResource {
     private String debutOn;
 
     private UniverseResource universe;
+
+    private Links links;
+
+    private Date created;
+
+    private Date updated;
 
 }

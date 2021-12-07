@@ -30,7 +30,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:2608",
+  "proxy": "http://localhost:2608/comicbook",
   "browserslist": {
     "production": [
       ">0.2%",
