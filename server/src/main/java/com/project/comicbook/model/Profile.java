@@ -26,15 +26,15 @@ import lombok.Setter;
 @Setter
 public class Profile {
 
-    @SequenceGenerator(name = "PROFILE_ID_GEN", initialValue = 10000, allocationSize = 1)
     @Id
+    @SequenceGenerator(name = "PROFILE_ID_GEN", initialValue = 10000, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PROFILE_ID_GEN")
     private Long id;
 
     @NonNull
     private String name;
 
-    private String alias;
+    private String alias = "";
 
     private String base = "";
 

@@ -7,8 +7,6 @@ import lombok.Setter;
 @Setter
 public class LinksResource {
 
-    private Long id;
-
     private String official = "";
 
     private String wikipedia = "";

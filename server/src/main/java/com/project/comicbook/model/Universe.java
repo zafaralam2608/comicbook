@@ -25,8 +25,8 @@ import lombok.Setter;
 @Setter
 public class Universe {
 
-    @SequenceGenerator(name = "UNIVERSE_ID_GEN", initialValue = 100, allocationSize = 1)
     @Id
+    @SequenceGenerator(name = "UNIVERSE_ID_GEN", initialValue = 100, allocationSize = 1)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "UNIVERSE_ID_GEN")
     private Long id;
 
